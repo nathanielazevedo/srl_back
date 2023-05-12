@@ -9,6 +9,7 @@ import { getLab, addMember, updateLab, getLabs } from './controllers/Lab.js';
 dotenv.config();
 const app = express();
 const mongoKey = process.env.MONGO;
+console.log(mongoKey);
 
 const PORT = process.env.PORT || 6001;
 app.use(cors());
