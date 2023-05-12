@@ -49,8 +49,21 @@ export const addMember = async (req, res) => {
     };
     lab.members.push(newMember);
     const updatedLab = await lab.save();
-    console.log(updatedLab);
     res.status(200).json(updatedLab.members[lab.members.length - 1]);
+  } catch (err) {
+    res.status(409).json({ message: err.message });
+  }
+};
+
+// Delete Member
+export const deleteMember = async (req, res) => {
+  try {
+    const { memberId, labId } = req.params;
+    const lab = await Lab.findById(labId);
+    const index = lab.members.findIndex((member) => member._id === memberId);
+    lab.members.splice(index, 1);
+    const updatedLab = await lab.save();
+    res.status(200).json(updatedLab);
   } catch (err) {
     res.status(409).json({ message: err.message });
   }

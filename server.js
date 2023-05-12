@@ -4,7 +4,13 @@ import bodyParser from 'body-parser';
 import * as dotenv from 'dotenv';
 import mongoose from 'mongoose';
 import { register, login } from './controllers/Auth.js';
-import { getLab, addMember, updateLab, getLabs } from './controllers/Lab.js';
+import {
+  getLab,
+  addMember,
+  updateLab,
+  getLabs,
+  deleteMember,
+} from './controllers/Lab.js';
 
 dotenv.config();
 const app = express();
@@ -21,6 +27,7 @@ app.get('/lab/:id', getLab);
 app.post('/lab/member/:id', addMember);
 app.put('/lab/:id', updateLab);
 app.get('/labs', getLabs);
+app.delete('/lab/member/:memberId/:labId', deleteMember);
 
 mongoose
   .connect(mongoKey, {
