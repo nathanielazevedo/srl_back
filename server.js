@@ -23,10 +23,10 @@ app.put('/lab/:id', updateLab);
 app.get('/labs', getLabs);
 
 mongoose
-  .connect(`${mongoKey}`, {
+  .connect(mongoKey, {
     dbName: 'srl',
   })
   .then(() => {
     app.listen(PORT, () => console.log(`Server Port: ${PORT}`));
   })
-  .catch((error) => console.log(`${error}, did not connect.`));
+  .catch((error) => console.log(`${error}, ${mongoKey}, did not connect.`));
